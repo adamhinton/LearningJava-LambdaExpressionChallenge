@@ -1,9 +1,33 @@
 package dev.lpa;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
         String[] names = {"Jimbo", "BeepBeep", "anna", "bob", "hillbilly", "Squilliam", "DrBtthl", "Zack", "Sissy",
                 "mindy"};
+
+        System.out.println(Arrays.toString(names));
+
+        System.out.println("1. Set all to upper case");
+        Arrays.setAll(names, i -> names[i].toUpperCase());
+        System.out.println(Arrays.toString(names));
+
+        System.out.println("-".repeat(30));
+        System.out.println("2. Add random middle initial, including period");
+        Arrays.setAll(names, i -> {
+            int firstUpperCaseIndex = (int) 'A';
+            Random r = new Random();
+            int letterIndex = r.nextInt(26);
+            String nameWIthMidInitial = names[i] + " " + (char) (firstUpperCaseIndex + letterIndex) + ".";
+            return nameWIthMidInitial;
+        });
+        System.out.println(Arrays.toString(names));
+
+
+
+
     }
 }
 

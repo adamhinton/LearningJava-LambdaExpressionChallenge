@@ -1,6 +1,8 @@
 package dev.lpa;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -26,7 +28,31 @@ public class Main {
         System.out.println(Arrays.toString(names));
 
 
+        System.out.println("-".repeat(30));
+        System.out.println("3. Add last name that's reverse of first name");
 
+        Arrays.setAll(names, i ->{
+            String firstName = names[i].split(" ")[0];
+            String newLastName = new StringBuilder(firstName).reverse().toString();
+            return names[i] + " " + newLastName;
+        });
+        System.out.println(Arrays.toString(names));
+
+
+        System.out.println("-".repeat(30));
+        System.out.println("4. Remove any names where first name equals lastName");
+
+        List<String> namesList = new ArrayList<>(Arrays.asList(names));
+        namesList.removeIf(name ->{
+            String[] namesSplit = name.split(" ");
+            String firstName = namesSplit[0];
+            String lastName = namesSplit[namesSplit.length -1];
+//            System.out.printf("First last: %s %s", firstName, lastName);
+
+            return firstName.equalsIgnoreCase(lastName);
+        });
+
+        System.out.println(namesList);
 
     }
 }
